@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Krishdutta11/docker-spring-boot.git']]])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Krishnakali-Dutta/docker-spring-boot.git']])
             }
         }
         stage('Build') {
@@ -41,7 +41,7 @@ pipeline {
         stage('Pushing to ECR') {
             steps {  
                 script {
-                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 305292172736.dkr.ecr.us-east-1.amazonaws.com/my-docker-repo'
+                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 305292172736.dkr.ecr.us-east-1.amazonaws.com'
                     sh 'docker push 305292172736.dkr.ecr.us-east-1.amazonaws.com/my-docker-repo:$BUILD_NUMBER'
                 }
             }
