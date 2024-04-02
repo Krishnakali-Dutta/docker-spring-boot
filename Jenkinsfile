@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Static Code Analysis') {
             environment {
-                SONAR_URL = "http://18.204.7.11:9000"
+                SONAR_URL = "http://54.167.201.133:9000"
             }
             steps {
                 echo "Running static code analysis..."
